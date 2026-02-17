@@ -52,12 +52,12 @@
                 {% endif %}
 
                 <div class="talk-card">
-                    <div class="time">{{ talk.time }}</div>
                     <div class="content">
                         <span
                             class="category tag-{{ talk.category | lower | replace(' ', '-') | replace('&', '') | replace('/', '') }}">{{
                             talk.category }}</span>
                         <h3>{{ talk.title }}</h3>
+                        <div class="time">{{ talk.time }}</div>
                         <p class="description">{{ talk.description }}</p>
                         <div class="speakers">
                             {% for speaker in talk.speakers %}

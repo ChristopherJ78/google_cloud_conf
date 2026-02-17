@@ -87,6 +87,26 @@ TALKS = [
         "category": "Keynote",
         "description": "Wrap up the day with key takeaways and networking opportunities.",
         "time": "05:00 PM - 05:30 PM"
+    },
+    {
+        "id": 9,
+        "title": "Sustainable Cloud Computing",
+        "speakers": [
+            {"first_name": "Panel", "last_name": "Discussion", "linkedin": "#"}
+        ],
+        "category": "Sustainability",
+        "description": "A deep dive into how Google Cloud is helping businesses reduce their carbon footprint.",
+        "time": "06:00 PM - 07:00 PM"
+    },
+    {
+        "id": 10,
+        "title": "Late Night Code & Networking",
+        "speakers": [
+            {"first_name": "Community", "last_name": "Host", "linkedin": "#"}
+        ],
+        "category": "Social",
+        "description": "Grab a drink, write some code, and network with fellow cloud enthusiasts.",
+        "time": "08:00 PM - 09:00 PM"
     }
 ]
 
