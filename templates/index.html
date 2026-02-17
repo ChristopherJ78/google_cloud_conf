@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Cloud Tech Conf {{ year }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://www.gstatic.com/devrel-devsite/prod/v221006554/cloud/images/cloud-logo.svg"
+                    alt="Google Cloud Logo">
+                <h1>Tech Conf {{ year }}</h1>
+            </div>
+            <div class="date-location">
+                <p>📅 October 15, {{ year }}</p>
+                <p>📍 Moscone Center, San Francisco</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <form action="/" method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Search by title, speaker, or category..." value="{{ query }}">
+                <button type="submit">Search</button>
+                {% if query %}
+                <a href="/" class="clear-search">Clear</a>
+                {% endif %}
+            </form>
+        </section>
+
+        <section class="schedule">
+            <h2>Conference Schedule</h2>
+            {% if talks %}
+            <div class="timeline">
+                {% for talk in talks %}
+                <!-- Lunch Break Logic: Insert before the 5th talk (index 4) if we are showing all talks -->
+                {% if loop.index == 5 and not query %}
+                <div class="lunch-break">
+                    <div class="time">01:00 PM - 02:00 PM</div>
+                    <div class="content">
+                        <h3>🍽️ Lunch Break</h3>
+                        <p>Enjoy a provided lunch and network with other attendees.</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="talk-card">
+                    <div class="time">{{ talk.time }}</div>
+                    <div class="content">
+                        <span
+                            class="category tag-{{ talk.category | lower | replace(' ', '-') | replace('&', '') | replace('/', '') }}">{{
+                            talk.category }}</span>
+                        <h3>{{ talk.title }}</h3>
+                        <p class="description">{{ talk.description }}</p>
+                        <div class="speakers">
+                            {% for speaker in talk.speakers %}
+                            <a href="{{ speaker.linkedin }}" target="_blank" class="speaker">
+                                <span class="name">{{ speaker.first_name }} {{ speaker.last_name }}</span>
+                                <span class="linkedin-icon">in</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-results">
+                <p>No talks found matching "{{ query }}".</p>
+                <a href="/">View Full Schedule</a>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ year }} Google Cloud Tech Conf. This is a demo site.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
